@@ -1,8 +1,8 @@
 #pragma once
 #include "TransformManager.h"
+#include "ConsoleRenderer.h"
 #include <mutex>
 #include <thread>
-#include <iostream>
 #include <ctime>
 
 class Game
@@ -12,14 +12,15 @@ public:
 
 	Game(uint32_t size)
 	{
-		tm = new TransformManager(size);
-		tm->data[0].velocity.x = 2.0;
-		tm->data[0].reserved = true;
+		tm.Init(size);
+		tm._data[0].velocity.x = 2.0;
+		tm._data[0].reserved = true;
+		renderer.Init(&tm);
 	}
 
 	~Game()
 	{
-		delete tm;
+		tm.Clean();
 	}
 
 	void Start()
@@ -43,7 +44,8 @@ public:
 private:
 	bool running = false;
 	std::mutex runningMutex;
-	TransformManager* tm;
+	TransformManager tm;
+	ConsoleRenderer renderer;
 
 	void Running()
 	{
@@ -56,16 +58,16 @@ private:
 			deltaTime = end - start;
 			if (deltaTime.count() >= 0.1)
 			{
-				Update(deltaTime.count());
 				start = std::chrono::system_clock::now();
+				Update((float)deltaTime.count());
 			}
 		}
 	}
 
-	void Update(double dt)
+	void Update(float dt)
 	{
-		tm->Execute(dt);
-		std::cout << tm->data[0].position.ToString(2);
+		tm.Execute(dt);
+		renderer.Render();
 	}
 };
 

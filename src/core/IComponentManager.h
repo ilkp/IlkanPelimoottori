@@ -4,9 +4,7 @@
 class IComponentManager
 {
 public:
-	IComponentManager() {}
-	IComponentManager(uint32_t size) {}
-	virtual ~IComponentManager() {}
 	virtual void Init(uint32_t size) = 0;
-	virtual void Execute(double dt) = 0;
+	virtual void Execute(float dt) = 0;
+	virtual void Clean() = 0;
 };
