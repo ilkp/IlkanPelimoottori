@@ -12,15 +12,11 @@ public:
 
 	Game(uint32_t size)
 	{
-		tm.Init(size);
-		tm._data[0].velocity.x = 2.0;
-		tm._data[0].reserved = true;
-		renderer.Init(&tm);
-	}
-
-	~Game()
-	{
-		tm.Clean();
+		transformManager.Init(size);
+		uint32_t index = transformManager.Reserve();
+		transformManager._entities[index]._data._velocity.x = 2.0;
+		transformManager._entities[index]._reserved = true;
+		renderer.Init(&transformManager);
 	}
 
 	void Start()
@@ -44,29 +40,29 @@ public:
 private:
 	bool running = false;
 	std::mutex runningMutex;
-	TransformManager tm;
+	TransformManager transformManager;
 	ConsoleRenderer renderer;
 
 	void Running()
 	{
 		auto start = std::chrono::system_clock::now();
-		auto end = std::chrono::system_clock::now();
-		std::chrono::duration<double> deltaTime;
+		auto now = std::chrono::system_clock::now();
+		std::chrono::duration<float> elapsedTime;
 		while (IsRunning())
 		{
-			end = std::chrono::system_clock::now();
-			deltaTime = end - start;
-			if (deltaTime.count() >= 0.1)
+			now = std::chrono::system_clock::now();
+			elapsedTime = now - start;
+			if (elapsedTime.count() >= 0.1f)
 			{
 				start = std::chrono::system_clock::now();
-				Update((float)deltaTime.count());
+				Update((float)elapsedTime.count());
 			}
 		}
 	}
 
 	void Update(float dt)
 	{
-		tm.Execute(dt);
+		transformManager.Execute(dt);
 		renderer.Render();
 	}
 };

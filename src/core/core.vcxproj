@@ -152,13 +152,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleRenderer.h" />
-    <ClInclude Include="IComponentManager.h" />
+    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="IdManager.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="TransformManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleRenderer.cpp" />
     <ClCompile Include="IdManager.cpp" />
     <ClCompile Include="TransformManager.cpp" />
   </ItemGroup>
