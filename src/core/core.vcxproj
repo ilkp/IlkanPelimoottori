@@ -152,6 +152,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleRenderer.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityData.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="IdManager.h" />
     <ClInclude Include="IRenderer.h" />

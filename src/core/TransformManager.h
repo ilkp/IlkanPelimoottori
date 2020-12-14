@@ -2,8 +2,9 @@
 #include <queue>
 #include "glm/glm.hpp"
 #include "EntityManager.h"
+#include "EntityData.h"
 
-typedef struct TransformData
+typedef struct TransformData : EntityData
 {
 	TransformData* _parent = nullptr;
 	glm::vec3 _position = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -15,19 +16,16 @@ typedef struct TransformData
 
 } TransformData;
 
-class TransformManager: public EntityManager<TransformData>
+class TransformManager: public EntityManager
 {
 public:
-	void Execute(float dt)
-	{
-		for (uint32_t i = 0; i < _size; ++i)
-		{
-			if (_entities[i]._reserved)
-			{
-				_entities[i]._data._velocity += _entities[i]._data._acceleration * dt;
-				_entities[i]._data._position += _entities[i]._data._velocity * dt;
-			}
-		}
-	}
-};
+	TransformData* _entityData = nullptr;
 
+	void Execute(float deltaTime);
+	void Init(uint32_t size);
+	~TransformManager();
+	void Clean();
+	uint32_t Reserve();
+	void Release(uint32_t index);
+	TransformData* GetEntityData(uint32_t index) const;
+};

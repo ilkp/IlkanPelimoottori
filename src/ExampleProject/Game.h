@@ -1,9 +1,11 @@
 #pragma once
 #include "TransformManager.h"
 #include "ConsoleRenderer.h"
+#include "Entity.h"
 #include <mutex>
 #include <thread>
 #include <ctime>
+#include <iostream>
 
 class Game
 {
@@ -13,9 +15,8 @@ public:
 	Game(uint32_t size)
 	{
 		transformManager.Init(size);
-		uint32_t index = transformManager.Reserve();
-		transformManager._entities[index]._data._velocity.x = 2.0;
-		transformManager._entities[index]._reserved = true;
+		entity.SetEntityIndex(&transformManager, transformManager.Reserve());
+		transformManager.GetEntityData(entity.GetEntityIndex(&transformManager))->_velocity.x = 2.0;
 		renderer.Init(&transformManager);
 	}
 
@@ -42,6 +43,7 @@ private:
 	std::mutex runningMutex;
 	TransformManager transformManager;
 	ConsoleRenderer renderer;
+	Entity entity;
 
 	void Running()
 	{

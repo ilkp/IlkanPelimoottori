@@ -3,7 +3,7 @@
 
 int main()
 {
-	Game game(2);
+	Game game(100);
 	game.Start();
 	int exit = 0;
 	std::cin >> exit;
