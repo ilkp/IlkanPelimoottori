@@ -16,7 +16,7 @@ typedef struct TransformData : EntityData
 
 } TransformData;
 
-class TransformManager: public EntityManager
+class TransformManager : public EntityManager
 {
 public:
 	TransformData* _entityData = nullptr;

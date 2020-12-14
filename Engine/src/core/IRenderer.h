@@ -5,7 +5,7 @@
 class IRenderer
 {
 public:
-	virtual void Init(TransformManager* transformManager) = 0;
+	virtual int Init(TransformManager* transformManager) = 0;
 	virtual void Clean() = 0;
 	virtual void Render() = 0;
 };

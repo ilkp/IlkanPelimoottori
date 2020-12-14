@@ -1,7 +1,7 @@
 #pragma once
 #include "TransformManager.h"
-#include "ConsoleRenderer.h"
 #include "Entity.h"
+#include "SDL2_renderer.h"
 #include <mutex>
 #include <thread>
 #include <ctime>
@@ -42,7 +42,7 @@ private:
 	bool running = false;
 	std::mutex runningMutex;
 	TransformManager transformManager;
-	ConsoleRenderer renderer;
+	SDL2_renderer renderer;
 	Entity entity;
 
 	void Running()
