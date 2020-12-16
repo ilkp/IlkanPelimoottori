@@ -5,12 +5,12 @@ Download and extract glm-0.9.9.8.zip from https://github.com/g-truc/glm/releases
 
 Download and extract SDL2-devel-2.0.12-VC.zip from https://www.libsdl.org/download-2.0.php
 
-### core
+## core
 Go to core project properties and select all configurations and all platforms
 
 Set:
 
-  Configuration Properties
+  ### Configuration Properties
   
     General > Output Directory > $(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\
     
@@ -18,18 +18,18 @@ Set:
             
             > C++ Languare Standard > C++ 17
             
-  C/C++
+  ### C/C++
   
     General > Additional Include Directories > write your glm folder (e.g. C:\SDK\glm)
     
 ---
 
-### SDL2_renderer
+## SDL2_renderer
 Go to SDL2_renderer project properties and select all configurations and all platforms
 
 Set:
 
-  Configuration Properties
+  ### Configuration Properties
   
     General > Output Directory > $(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\
     
@@ -37,7 +37,7 @@ Set:
             
             > C++ Languare Standard > C++ 17
             
-  C/C++
+  ### C/C++
   
     General > Additional Include Directories > write your SDL 2.0 include folder (e.g. C:\SDK\SDL\SDL2-2.0.12\include\)
     
@@ -45,7 +45,7 @@ Set:
                                              
                                              > $(SolutionDir)src\core\
                                              
-  Librarian
+  ### Librarian
   
     General > Additional Dependencies > SDL2.lib
   
@@ -62,7 +62,7 @@ Go to test_game project properties and select all configurations and all platfor
 
 Set:
 
-  Configuration Properties
+  ### Configuration Properties
   
     General > Output Directory > $(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\
     
@@ -70,7 +70,7 @@ Set:
             
             > C++ Languare Standard > C++ 17
             
-  C/C++
+  ### C/C++
   
     General > Additional Include Directories > write your SDL 2.0 include folder (e.g. C:\SDK\SDL\SDL2-2.0.12\include\)
     
@@ -80,7 +80,7 @@ Set:
                                              
                                              > $(SolutionDir)src\SDL2_renderer\
                                              
-  Linker
+  ### Linker
   
     General > Additional Library Dependencies > $(Solutiondir)bin\core\$(Platform)\$(Configuration)\
   
@@ -90,7 +90,7 @@ Set:
                       
                                     > SDL2_renderer.lib
                                     
-  Build Events
+  ### Build Events
     Post-Build Event > Command Lines > write following:
 
 if $(Platform) == x86 (
