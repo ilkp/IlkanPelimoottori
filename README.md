@@ -57,7 +57,7 @@ Set:
                                              
 ---
 
-### test_game
+## test_game
 Go to test_game project properties and select all configurations and all platforms
 
 Set:
