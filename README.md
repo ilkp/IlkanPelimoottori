@@ -5,6 +5,8 @@ Download and extract glm-0.9.9.8.zip from https://github.com/g-truc/glm/releases
 
 Download and extract SDL2-devel-2.0.12-VC.zip from https://www.libsdl.org/download-2.0.php
 
+---
+
 ## core
 Go to core project properties and select all configurations and all platforms
 
