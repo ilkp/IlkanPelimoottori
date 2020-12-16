@@ -28,10 +28,9 @@ public:
 	void Clean();
 	uint32_t Reserve();
 	uint32_t Reserve(bool resetToIdentity);
+	uint32_t Reserve(uint32_t nEntities);
 	void Release(uint32_t index);
 	TransformOutData* GetOutData();
-	glm::mat4* GetProjectionMatrix();
-	glm::mat4* GetViewMatrix();
 
 	void SetScale(uint32_t index, glm::vec3 vector);
 	void SetScale(uint32_t index, float x, float y, float z);
@@ -46,13 +45,4 @@ public:
 private:
 	TransformData* _entityData = nullptr;
 	TransformOutData* _outData = nullptr;
-	glm::mat4 _projectionMatrix = glm::perspective(
-		glm::radians(45.0f),
-		4.0f / 3.0f,
-		0.1f,
-		100.0f);
-	glm::mat4 _viewMatrix = glm::lookAt(
-		glm::vec3(4.0f, 3.0f, 3.0f),
-		glm::vec3(0.0f, 0.0f, 0.0f),
-		glm::vec3(0.0f, 1.0f, 0.0f));
 };

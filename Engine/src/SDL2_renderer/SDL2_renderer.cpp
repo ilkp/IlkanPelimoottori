@@ -53,7 +53,10 @@ void SDL2_renderer::Render(RendererInData* rendererInData)
 
 		for (int j = 0; j < 8; ++j)
 		{
-			_pss[j] = glm::project(_points[j], rendererInData->transformOutData[i]._modelMatrix, *rendererInData->projectionMatrix, _viewport);
+			_pss[j] = glm::project(_points[j],
+				rendererInData->cameraData._viewMatrix * rendererInData->transformOutData[i]._modelMatrix,
+				rendererInData->cameraData._projectionMatrix,
+				_viewport);
 		}
 		SDL_RenderDrawLine(_renderer, _pss[0].x, _pss[0].y, _pss[1].x, _pss[1].y);
 		SDL_RenderDrawLine(_renderer, _pss[1].x, _pss[1].y, _pss[2].x, _pss[2].y);

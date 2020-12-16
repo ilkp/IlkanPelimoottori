@@ -1,13 +1,13 @@
 #pragma once
 #include <cstdint>
 #include "TransformManager.h"
+#include "CameraManager.h"
 
 typedef struct RendererInData
 {
 	uint32_t transformOutDataLength;
-	glm::mat4* projectionMatrix;
-	glm::mat4* viewMatrix;
 	TransformOutData* transformOutData;
+	CameraData cameraData;
 } RendererInData;
 
 class IRenderer

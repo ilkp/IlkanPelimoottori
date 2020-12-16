@@ -1,5 +1,6 @@
 #pragma once
 #include "TransformManager.h"
+#include "CameraManager.h"
 #include "Entity.h"
 #include "SDL2_renderer.h"
 #include <mutex>
@@ -16,22 +17,23 @@ public:
 
 	Game(uint32_t size)
 	{
-		_randomT = new float[size];
-		for (int i = 0; i < size; ++i)
-		{
-			_randomT[i] = rand() % 100;
-		}
 		srand(time(NULL));
 		int range = 15;
-		int zrange = 30;
+		camManager.Init(1);
+		camManager.Reserve();
 		tManager.Init(size);
-		entities = new Entity[size];
-		for (uint32_t i = 0; i < size; ++i)
+		tManager.Reserve(uint32_t(5));
+		for (uint32_t i = 1; i < tManager._top; ++i)
 		{
-			entities[i].SetEntityIndex(&tManager, tManager.Reserve());
 			tManager.SetScale(i, 0.5f);
-			tManager.SetPosition(i, rand() % range - range/2.0f, rand() % range - range / 2.0f, rand() % zrange + 10);
+			tManager.SetPosition(i, rand() % range - range/2.0f, rand() % range - range / 2.0f, -rand() % range -range / 2.0f);
 		}
+		uint32_t statBoxes = tManager.Reserve(uint32_t(5));
+		tManager.SetPosition(statBoxes, glm::vec3(0.0f, 0.0f, 0.0f));
+		tManager.SetPosition(statBoxes + 1, glm::vec3(2.0f, 0.0f, 0.0f));
+		tManager.SetPosition(statBoxes + 2, glm::vec3(-2.0f, 0.0f, 0.0f));
+		tManager.SetPosition(statBoxes + 3, glm::vec3(0.0f, 2.0f, 0.0f));
+		tManager.SetPosition(statBoxes + 4, glm::vec3(0.0f, -2.0f, 0.0f));
 		renderer.Init();
 	}
 
@@ -58,11 +60,10 @@ private:
 	float timeSinceStart = 0.0f;
 	std::mutex runningMutex;
 	TransformManager tManager;
+	CameraManager camManager;
 	SDL2_renderer renderer;
 	RendererInData renderInData;
 	Entity* entities;
-
-	float* _randomT;
 
 	void Running()
 	{
@@ -81,7 +82,7 @@ private:
 
 	void Update(float dt)
 	{
-		for (uint32_t i = 0; i < tManager._size; ++i)
+		for (uint32_t i = 1; i < 6; ++i)
 		{
 			tManager.Rotate(i, glm::vec3(1.0f + i % 4, 1.0f + i % 4, 1.0f + i % 4) * dt * 0.2f * (1.0f - 2*(i % 2)));
 			float x = glm::cos(timeSinceStart) * 0.1f;
@@ -91,10 +92,13 @@ private:
 		}
 		tManager.Execute(dt);
 
-		renderInData.projectionMatrix = tManager.GetProjectionMatrix();
+		float camPosScale = 50.0f;
+		glm::vec3 camPos = glm::vec3(glm::cos(timeSinceStart) * camPosScale, 0.0f, glm::sin(timeSinceStart) * camPosScale);
+		camManager.LookAt(1, camPos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
 		renderInData.transformOutData = tManager.GetOutData();
-		renderInData.transformOutDataLength = tManager._size;
-		renderInData.viewMatrix = tManager.GetViewMatrix();
+		renderInData.transformOutDataLength = tManager._top;
+		renderInData.cameraData = camManager.GetCameraData(1);
 
 		renderer.Render(&renderInData);
 	}
