@@ -89,11 +89,11 @@ Go to test_game project properties and select all configurations and all platfor
   ### Build Events
     Post-Build Event > Command Lines > write following:
 
-if $(Platform) == x86 (
-    echo "Copying SDL2.dll for x86"
-    copy "C:\SDK\SDL\SDL2-2.0.12\lib\x86\SDL2.dll" "$(TargetDir)\SDL2.dl"
-)
-if $(Platform) == x64 (
-    echo "Copying SDL2.dll for x64
-    copy "C:\SDK\SDL\SDL2-2.0.12\lib\x64\SDL2.dll" "$(TargetDir)\SDL2.dl"
-)
+    if $(Platform) == x86 (
+        echo "Copying SDL2.dll for x86"
+        copy "C:\SDK\SDL\SDL2-2.0.12\lib\x86\SDL2.dll" "$(TargetDir)\SDL2.dl"
+    )
+    if $(Platform) == x64 (
+        echo "Copying SDL2.dll for x64
+        copy "C:\SDK\SDL\SDL2-2.0.12\lib\x64\SDL2.dll" "$(TargetDir)\SDL2.dl"
+    )
