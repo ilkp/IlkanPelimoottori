@@ -8,9 +8,7 @@ Download and extract SDL2-devel-2.0.12-VC.zip from https://www.libsdl.org/downlo
 ---
 
 ## core
-Go to core project properties and select all configurations and all platforms
-
-Set:
+Go to core project properties and select all configurations and all platforms and set:
 
   ### Configuration Properties
   
@@ -27,9 +25,7 @@ Set:
 ---
 
 ## SDL2_renderer
-Go to SDL2_renderer project properties and select all configurations and all platforms
-
-Set:
+Go to SDL2_renderer project properties and select all configurations and all platforms set:
 
   ### Configuration Properties
   
@@ -60,9 +56,7 @@ Set:
 ---
 
 ## test_game
-Go to test_game project properties and select all configurations and all platforms
-
-Set:
+Go to test_game project properties and select all configurations and all platforms set:
 
   ### Configuration Properties
   
