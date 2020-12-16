@@ -23,7 +23,8 @@ Set:
     General > Additional Include Directories > write your glm folder (e.g. C:\SDK\glm)
     
 ---
-  
+
+### SDL2_renderer
 Go to SDL2_renderer project properties and select all configurations and all platforms
 
 Set:
@@ -56,6 +57,7 @@ Set:
                                              
 ---
 
+### test_game
 Go to test_game project properties and select all configurations and all platforms
 
 Set:
