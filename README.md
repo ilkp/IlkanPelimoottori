@@ -91,9 +91,9 @@ Go to test_game project properties and select all configurations and all platfor
 
     if $(Platform) == x86 (
         echo "Copying SDL2.dll for x86"
-        copy "YOUR_SDL_DIR\lib\x86\SDL2.dll" "$(TargetDir)\SDL2.dl"
+        copy "YOUR_SDL_DIR\lib\x86\SDL2.dll" "$(TargetDir)\SDL2.dll"
     )
     if $(Platform) == x64 (
         echo "Copying SDL2.dll for x64
-        copy "YOUR_SDL_DIR\lib\x64\SDL2.dll" "$(TargetDir)\SDL2.dl"
+        copy "YOUR_SDL_DIR\lib\x64\SDL2.dll" "$(TargetDir)\SDL2.dll"
     )
