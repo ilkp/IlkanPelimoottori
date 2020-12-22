@@ -10,7 +10,7 @@ Download and extract SDL2-devel-2.0.12-VC.zip from https://www.libsdl.org/downlo
 ## core
 Go to core project properties and select all configurations and all platforms and set:
 
-  ### Configuration Properties
+  #### Configuration Properties
   
     General > Output Directory > $(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\
     
@@ -18,7 +18,7 @@ Go to core project properties and select all configurations and all platforms an
             
             > C++ Languare Standard > C++ 17
             
-  ### C/C++
+  #### C/C++
   
     General > Additional Include Directories > write your glm folder (e.g. C:\SDK\glm)
     
@@ -27,7 +27,7 @@ Go to core project properties and select all configurations and all platforms an
 ## SDL2_renderer
 Go to SDL2_renderer project properties and select all configurations and all platforms set:
 
-  ### Configuration Properties
+  #### Configuration Properties
   
     General > Output Directory > $(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\
     
@@ -35,7 +35,7 @@ Go to SDL2_renderer project properties and select all configurations and all pla
             
             > C++ Languare Standard > C++ 17
             
-  ### C/C++
+  #### C/C++
   
     General > Additional Include Directories > write your SDL 2.0 include folder (e.g. C:\SDK\SDL\SDL2-2.0.12\include\)
     
@@ -43,7 +43,7 @@ Go to SDL2_renderer project properties and select all configurations and all pla
                                              
                                              > $(SolutionDir)src\core\
                                              
-  ### Librarian
+  #### Librarian
   
     General > Additional Dependencies > SDL2.lib
   
@@ -58,7 +58,7 @@ Go to SDL2_renderer project properties and select all configurations and all pla
 ## test_game
 Go to test_game project properties and select all configurations and all platforms set:
 
-  ### Configuration Properties
+  #### Configuration Properties
   
     General > Output Directory > $(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\
     
@@ -66,7 +66,7 @@ Go to test_game project properties and select all configurations and all platfor
             
             > C++ Languare Standard > C++ 17
             
-  ### C/C++
+  #### C/C++
   
     General > Additional Include Directories > write your SDL 2.0 include folder (e.g. C:\SDK\SDL\SDL2-2.0.12\include\)
     
@@ -76,7 +76,7 @@ Go to test_game project properties and select all configurations and all platfor
                                              
                                              > $(SolutionDir)src\SDL2_renderer\
                                              
-  ### Linker
+  #### Linker
   
     General > Additional Library Dependencies > $(Solutiondir)bin\core\$(Platform)\$(Configuration)\
   
@@ -86,14 +86,14 @@ Go to test_game project properties and select all configurations and all platfor
                       
                                     > SDL2_renderer.lib
                                     
-  ### Build Events
+  #### Build Events
     Post-Build Event > Command Lines > write following (replace with your directory):
 
     if $(Platform) == x86 (
         echo "Copying SDL2.dll for x86"
-        copy "YOUR_SDL_DIR\lib\x86\SDL2.dll" "$(TargetDir)\SDL2.dl"
+        copy "YOUR_SDL_DIR\lib\x86\SDL2.dll" "$(TargetDir)\SDL2.dll"
     )
     if $(Platform) == x64 (
         echo "Copying SDL2.dll for x64
-        copy "YOUR_SDL_DIR\lib\x64\SDL2.dll" "$(TargetDir)\SDL2.dl"
+        copy "YOUR_SDL_DIR\lib\x64\SDL2.dll" "$(TargetDir)\SDL2.dll"
     )
