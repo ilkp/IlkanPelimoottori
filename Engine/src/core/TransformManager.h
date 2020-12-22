@@ -15,7 +15,7 @@ typedef struct TransformData : EntityData
 
 typedef struct TransformOutData
 {
-	bool _render = false;
+	bool _active = false;
 	glm::mat4 _modelMatrix;
 } TransformOutData;
 
@@ -30,7 +30,7 @@ public:
 	uint32_t Reserve(bool resetToIdentity);
 	uint32_t Reserve(uint32_t nEntities);
 	void Release(uint32_t index);
-	TransformOutData* GetOutData();
+	TransformOutData* GetOutData(uint32_t index);
 
 	void SetScale(uint32_t index, glm::vec3 vector);
 	void SetScale(uint32_t index, float x, float y, float z);
@@ -39,7 +39,7 @@ public:
 	void SetPosition(uint32_t index, float x, float y, float z);
 	void Translate(uint32_t index, glm::vec3 vector);
 	void Translate(uint32_t index, float x, float y, float z);
-	void Rotate(uint32_t index, glm::vec3 vector);
+	void Rotate(uint32_t index, glm::vec3 eulerAngles);
 	void Rotate(uint32_t index, float x, float y, float z);
 
 private:

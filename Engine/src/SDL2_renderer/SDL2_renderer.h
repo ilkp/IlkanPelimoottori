@@ -6,29 +6,15 @@
 class SDL2_renderer : IRenderer
 {
 public:
-	virtual int Init() override;
+	virtual int Init(int width, int height) override;
 	virtual void Clean() override;
-	virtual void Render(RendererInData* rendererInData) override;
+	virtual void Render(const CameraData& cameraData) override;
+	virtual RenderingData* AddRenderingData(Mesh mesh, Texture texture) override;
 
 private:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 	bool _userQuitting = false;
-
-	glm::vec3 _points[8] = {
-		glm::vec3(0.0f, 0.0f, 0.0f),
-		glm::vec3(2.0f, 0.0f, 0.0f),
-		glm::vec3(2.0f, 0.0f, 2.0f),
-		glm::vec3(0.0f, 0.0f, 2.0f),
-
-		glm::vec3(0.0f, 2.0f, 0.0f),
-		glm::vec3(2.0f, 2.0f, 0.0f),
-		glm::vec3(2.0f, 2.0f, 2.0f),
-		glm::vec3(0.0f, 2.0f, 2.0f)
-	};
-
-	glm::vec3 _pss[8];
-
 	glm::vec4 _viewport;
 
 	void HandleEvents();

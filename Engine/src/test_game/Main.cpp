@@ -4,7 +4,9 @@
 
 int main()
 {
-	Game game(100);
+	Game game;
+	if (game.Init(100) != 0)
+		return 1;
 	game.Start();
 	int exit = 0;
 	std::cin >> exit;

@@ -7,9 +7,8 @@ void CameraManager::Execute(float dt)
 void CameraManager::Init(uint32_t size)
 {
     _size = size;
-    _top = 1;
-	_entityData = new CameraData[size + 1];
-	_entityData[0]._reserved = true;
+    _top = 0;
+	_entityData = new CameraData[size];
 }
 
 void CameraManager::Clean()
@@ -19,7 +18,7 @@ void CameraManager::Clean()
 
 uint32_t CameraManager::Reserve()
 {
-	for (uint32_t i = 1; i < _size; ++i)
+	for (uint32_t i = 0; i < _size; ++i)
 	{
 		if (!_entityData[i]._reserved)
 		{
@@ -29,7 +28,7 @@ uint32_t CameraManager::Reserve()
 			return i;
 		}
 	}
-	return 0;
+	return -1;
 }
 
 void CameraManager::Release(uint32_t index)
@@ -37,7 +36,7 @@ void CameraManager::Release(uint32_t index)
 	if (index == 0)
 		return;
 	_entityData[index]._reserved = false;
-	while (!_entityData[_top - 1]._reserved)
+	while (_top >= 0 && !_entityData[_top - 1]._reserved)
 		--_top;
 }
 

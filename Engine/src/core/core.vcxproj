@@ -156,6 +156,8 @@
     <ClInclude Include="EntityData.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="IRenderer.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TransformManager.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,5 @@
 #pragma once
 #include <cstdint>
-#include <queue>
-#include "EntityData.h"
 
 class EntityManager
 {
@@ -14,7 +12,4 @@ public:
 	virtual void Clean() = 0;
 	virtual uint32_t Reserve() = 0;
 	virtual void Release(uint32_t index) = 0;
-
-protected:
-	std::queue<uint32_t> _releasedIndices;
 };

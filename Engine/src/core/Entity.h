@@ -1,5 +1,6 @@
 #pragma once
 #include "EntityManager.h"
+#include "IRenderer.h"
 #include <map>
 
 class Entity
@@ -11,4 +12,5 @@ public:
 
 private:
 	std::map<EntityManager*, uint32_t> indices;
+	RenderingData* _renderingData;
 };
